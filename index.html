@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Palaparthi Paulson – Animation, Gaming & Film</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#150d3f;--bg2:#1f1359;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.14);--ink:#fff;--mute:#bdb4ea;
+  --p:#8b5cff;--m:#e052ff;--b:#4f7bff;--grad:linear-gradient(90deg,#9a6bff,#ff5fd7);
+  color-scheme:dark;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:400 1.02rem/1.7 Lato,system-ui,sans-serif;overflow-x:hidden;
+  background:radial-gradient(800px 500px at 85% -5%,rgba(224,82,255,.45),transparent 70%),radial-gradient(700px 600px at -10% 30%,rgba(79,123,255,.35),transparent 70%),linear-gradient(180deg,var(--bg),#0f092e 70%);background-color:var(--bg)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+h1,h2,h3{font-family:Montserrat,system-ui,sans-serif;margin:0;line-height:1.08;text-transform:uppercase;font-weight:800}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 2.5rem);margin:0 auto}
+section{padding:5.5rem 0}
+.hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:clamp(1.9rem,5vw,3rem);text-align:center}
+.sub{color:var(--mute);text-align:center;max-width:56ch;margin:1rem auto 3rem}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(16px);background:rgba(21,13,63,.7);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:800 1.2rem Montserrat,sans-serif}
+.logo svg{width:28px;height:28px}
+nav{display:flex;gap:1.8rem}
+nav a{text-decoration:none;font:500 .8rem Montserrat,sans-serif;color:var(--mute);position:relative;transition:color .2s}
+nav a:hover{color:#fff}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--grad);transform:scaleX(0);transition:transform .3s}
+nav a:hover::after{transform:scaleX(1)}
+a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:760px){nav{display:none}}
+
+/* skewed buttons */
+.btn{position:relative;display:inline-block;padding:0;border:0;background:none;cursor:pointer;text-decoration:none;color:#fff;transform:skewX(-18deg);transition:transform .25s cubic-bezier(.3,1.6,.5,1),filter .3s;font:700 .85rem Montserrat,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.btn span{display:block;padding:1rem 2.2rem;transform:skewX(18deg);position:relative;z-index:1}
+.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#6d4bff,#e052ff,#6d4bff);background-size:200% 100%;border-radius:4px;transition:background-position .5s}
+.btn::after{content:"";position:absolute;inset:0;border-radius:4px;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-130%);transition:transform .7s}
+.btn:hover{transform:skewX(-18deg) translateY(-4px);filter:drop-shadow(0 10px 18px rgba(224,82,255,.65))}
+.btn:hover::before{background-position:100% 0}
+.btn:hover::after{transform:translateX(130%)}
+.btn:active{transform:skewX(-18deg) scale(.95)}
+.btn.line::before{background:rgba(21,13,63,.9);border:1.5px solid var(--p);background-size:auto}
+.btn.line:hover::before{background:rgba(139,92,255,.35)}
+.btn.glow{animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{50%{filter:drop-shadow(0 0 16px rgba(224,82,255,.8))}}
+
+/* hero */
+.hero{padding:4rem 0 6rem}
+.hg{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:center}
+@media(max-width:860px){.hg{grid-template-columns:1fr}}
+h1{font-size:clamp(2.6rem,7.2vw,5.2rem)}
+.hero p{color:var(--mute);max-width:46ch;margin:1.5rem 0 2rem}
+.cta{display:flex;gap:1.6rem;flex-wrap:wrap}
+.stats{display:flex;gap:2.4rem;margin-top:2.6rem;flex-wrap:wrap}
+.stats b{display:block;font:800 1.7rem Montserrat,sans-serif}
+.stats small{color:var(--mute);font-size:.8rem}
+.vis{position:relative;aspect-ratio:1;max-width:520px;width:100%;margin:0 auto}
+.vis svg{width:100%;height:100%;overflow:visible}
+.ring{transform-origin:200px 200px;animation:spin 18s linear infinite}
+.ring.r2{animation-duration:28s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.float{animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-14px)}}
+.sp{animation:tw 2.4s ease-in-out infinite}
+.sp:nth-of-type(2n){animation-delay:.8s}.sp:nth-of-type(3n){animation-delay:1.5s}
+@keyframes tw{50%{opacity:.15;transform:scale(.4)}}
+
+/* ticker */
+.tick{overflow:hidden;background:rgba(21,13,63,.85);border-block:1px solid var(--line);padding:1rem 0;transform:rotate(-2deg);margin:0 -3%;box-shadow:0 0 40px rgba(139,92,255,.3)}
+.tick div{display:flex;width:max-content;gap:2.2rem;animation:roll 28s linear infinite;font:800 .95rem Montserrat,sans-serif;text-transform:uppercase;white-space:nowrap}
+.tick i{font-style:normal;color:var(--m)}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* cards */
+.glass{background:var(--card);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px)}
+.about{max-width:760px;margin:0 auto;padding:2.4rem;text-align:center}
+.about p{color:var(--mute);margin:.6rem 0}
+.tags{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:1.4rem}
+.tags span{padding:.35rem 1rem;border:1px solid var(--p);border-radius:99px;font-size:.85rem}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.2rem;align-items:center}
+.tool{padding:1.8rem 1.4rem;text-align:center;transition:transform .3s,border-color .3s,box-shadow .3s}
+.tool:hover{transform:translateY(-8px);border-color:var(--m);box-shadow:0 14px 40px -12px var(--m)}
+.tool .ic{width:64px;height:64px;margin:0 auto 1rem;border-radius:16px;display:grid;place-items:center;font:800 1.3rem Montserrat,sans-serif;background:linear-gradient(135deg,#6d4bff,#e052ff);box-shadow:0 0 24px rgba(224,82,255,.5)}
+.tool h3{font-size:1rem}.tool p{margin:.5rem 0 0;color:var(--mute);font-size:.9rem;line-height:1.5}
+.tool.feat{padding-block:2.6rem;border:2px solid var(--m);box-shadow:0 0 40px rgba(224,82,255,.4);background:rgba(139,92,255,.16)}
+@media(min-width:900px){.tool.feat{transform:scale(1.08)}.tool.feat:hover{transform:scale(1.08) translateY(-8px)}}
+
+/* tabs and work */
+.tabs{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem}
+.tab{transform:skewX(-18deg);border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--mute);cursor:pointer;padding:0;font:700 .78rem Montserrat,sans-serif;text-transform:uppercase;transition:background .25s,color .25s}
+.tab span{display:block;padding:.75rem 1.6rem;transform:skewX(18deg)}
+.tab:hover{color:#fff;border-color:var(--p)}
+.tab[aria-pressed="true"]{background:linear-gradient(90deg,#6d4bff,#e052ff);color:#fff;border-color:transparent}
+.work{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+.card{padding:1rem;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--p)}
+.card .th{aspect-ratio:16/10;border-radius:10px;display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,rgba(224,82,255,.5),transparent 60%),linear-gradient(160deg,#2a1a78,#150d3f);position:relative;overflow:hidden}
+.card .th::before{content:"▶";width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#6d4bff,#e052ff);box-shadow:0 0 30px var(--m);transition:transform .3s}
+.card:hover .th::before{transform:scale(1.18)}
+.card h3{font-size:1.05rem;margin:1rem .3rem .2rem}.card p{margin:0 .3rem .4rem;color:var(--mute);font-size:.9rem}
+[hidden]{display:none!important}
+
+/* education and quote */
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem}
+.edu .glass{padding:1.6rem;transition:transform .3s,border-color .3s}
+.edu .glass:hover{transform:translateY(-6px);border-color:var(--m)}
+.edu small{color:var(--m);font:700 .75rem Montserrat,sans-serif;text-transform:uppercase}
+.edu h3{font-size:1.05rem;margin:.5rem 0 .3rem}.edu p{margin:0;color:var(--mute)}
+.quote{max-width:720px;margin:3rem auto 0;padding:2.4rem;text-align:center;position:relative}
+.quote::before{content:"”";position:absolute;top:-12px;left:50%;translate:-50% 0;font:800 6rem/1 Montserrat,sans-serif;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.quote p{margin:1rem 0 0;font-size:1.1rem}
+
+.cc{text-align:center;padding:4rem 1.5rem;border-radius:22px;border:1px solid var(--p);background:radial-gradient(500px 240px at 50% 0%,rgba(224,82,255,.4),transparent 70%),var(--card)}
+.cc .cta{justify-content:center;margin-top:2rem}
+footer{padding:2rem 0;text-align:center;color:var(--mute);border-top:1px solid var(--line);font-size:.9rem}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));translate:-50% 150%;padding:.8rem 1.4rem;border-radius:99px;background:var(--grad);font-weight:700;transition:translate .4s cubic-bezier(.3,1.5,.5,1);z-index:50}
+#toast.on{translate:-50% 0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="#top"><svg viewBox="0 0 32 32" fill="none" stroke="url(#lg)" stroke-width="3.5" stroke-linecap="round"><defs><linearGradient id="lg"><stop offset="0" stop-color="#8b5cff"/><stop offset="1" stop-color="#e052ff"/></linearGradient></defs><path d="M5 27V16a11 11 0 0 1 22 0v11M12 27V17a4 4 0 0 1 8 0v10"/></svg>paulson</a>
+  <nav><a href="#top">Home</a><a href="#about">About</a><a href="#tools">Tools</a><a href="#work">Work</a><a href="#path">Education</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap hg">
+  <div>
+    <h1>Let your stories <span class="hl">come alive</span> on screen</h1>
+    <p>I’m Palaparthi Paulson, a B.Sc. Animation &amp; Gaming student at KL University. I animate, edit and shoot to tell stories people remember.</p>
+    <div class="cta">
+      <a class="btn glow" href="#contact"><span>Hire me</span></a>
+      <a class="btn line" href="#work"><span>View work</span></a>
+    </div>
+    <div class="stats">
+      <div><b>4</b><small>Software tools</small></div>
+      <div><b class="hl">3</b><small>Languages</small></div>
+      <div><b>6</b><small>Career interests</small></div>
+    </div>
+  </div>
+  <div class="vis" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f7bff"/><stop offset=".5" stop-color="#8b5cff"/><stop offset="1" stop-color="#ff5fd7"/></linearGradient>
+        <radialGradient id="g2"><stop offset="0" stop-color="#e052ff" stop-opacity=".55"/><stop offset="1" stop-color="#e052ff" stop-opacity="0"/></radialGradient>
+        <filter id="gl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <circle cx="200" cy="200" r="190" fill="url(#g2)"/>
+      <g class="ring" fill="none" stroke="url(#g1)" stroke-width="2" filter="url(#gl)"><circle cx="200" cy="200" r="165" stroke-dasharray="6 14"/></g>
+      <g class="ring r2" fill="none" stroke="url(#g1)" stroke-width="3" filter="url(#gl)"><circle cx="200" cy="200" r="135" stroke-dasharray="60 30"/></g>
+      <g class="float" filter="url(#gl)">
+        <path d="M88 200c0-22 14-40 36-40h152c22 0 36 18 36 40v22c0 22-14 36-34 36h-40c-14 0-18-14-30-14s-16 14-30 14h-50c-22 0-40-14-40-36z" fill="#1a1050" stroke="url(#g1)" stroke-width="4"/>
+        <circle cx="152" cy="206" r="30" fill="none" stroke="#4f7bff" stroke-width="3"/><circle cx="248" cy="206" r="30" fill="none" stroke="#ff5fd7" stroke-width="3"/>
+        <circle cx="152" cy="206" r="12" fill="#4f7bff"/><circle cx="248" cy="206" r="12" fill="#ff5fd7"/>
+        <path d="M92 190q-30 0-30 30M308 190q30 0 30 30M150 160q50-30 100 0" fill="none" stroke="url(#g1)" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g fill="#fff" filter="url(#gl)">
+        <circle class="sp" cx="70" cy="90" r="3"/><circle class="sp" cx="330" cy="110" r="4"/><circle class="sp" cx="300" cy="320" r="3"/>
+        <circle class="sp" cx="95" cy="310" r="4"/><circle class="sp" cx="200" cy="40" r="3"/><circle class="sp" cx="360" cy="230" r="3"/>
+      </g>
+    </svg>
+  </div>
+</div></section>
+
+<div class="tick" aria-hidden="true"><div>
+  <span>Animation</span><i>✦</i><span>Gaming</span><i>✦</i><span>Filmmaking</span><i>✦</i><span>Cinematography</span><i>✦</i><span>Video editing</span><i>✦</i><span>Digital photography</span><i>✦</i><span>Storytelling</span><i>✦</i>
+  <span>Animation</span><i>✦</i><span>Gaming</span><i>✦</i><span>Filmmaking</span><i>✦</i><span>Cinematography</span><i>✦</i><span>Video editing</span><i>✦</i><span>Digital photography</span><i>✦</i><span>Storytelling</span><i>✦</i>
+</div></div>
+
+<section id="about"><div class="wrap">
+  <h2>Meet the <span class="hl">creator</span></h2>
+  <div class="glass about" style="margin-top:2.5rem">
+    <p>I’m a creative B.Sc. Animation &amp; Gaming student with a strong interest in filmmaking, digital photography, animation and video editing.</p>
+    <p>I speak Telugu, English and Hindi, and I enjoy working in teams and learning new technology.</p>
+    <div class="tags"><span>Creative thinking</span><span>Adaptable</span><span>Team player</span><span>Visual storytelling</span></div>
+  </div>
+</div></section>
+
+<section id="tools"><div class="wrap">
+  <h2>The tools I <span class="hl">create</span> with</h2>
+  <p class="sub">Software I use to design, animate and edit.</p>
+  <div class="tools">
+    <div class="glass tool"><div class="ic">Ps</div><h3>Photoshop</h3><p>Image editing and concept art.</p></div>
+    <div class="glass tool"><div class="ic">An</div><h3>Adobe Animate</h3><p>2D animation and motion.</p></div>
+    <div class="glass tool feat"><div class="ic">M</div><h3>Autodesk Maya</h3><p>3D modeling and character animation.</p></div>
+    <div class="glass tool"><div class="ic">Pr</div><h3>Premiere Pro</h3><p>Video editing and pacing.</p></div>
+    <div class="glass tool"><div class="ic">◉</div><h3>Photography</h3><p>Framing, light and composition.</p></div>
+  </div>
+</div></section>
+
+<section id="work"><div class="wrap">
+  <h2>Selected <span class="hl">work</span></h2>
+  <p class="sub">Projects will appear here. Replace each card with an animation, game project or film.</p>
+  <div class="tabs" id="tabs">
+    <button class="tab" data-f="all" aria-pressed="true"><span>All</span></button>
+    <button class="tab" data-f="anim" aria-pressed="false"><span>Animation</span></button>
+    <button class="tab" data-f="game" aria-pressed="false"><span>Games</span></button>
+    <button class="tab" data-f="film" aria-pressed="false"><span>Film</span></button>
+  </div>
+  <div class="work">
+    <div class="glass card" data-c="anim"><div class="th"></div><h3>Animation project</h3><p>Add a 2D or 3D piece</p></div>
+    <div class="glass card" data-c="game"><div class="th"></div><h3>Game project</h3><p>Add a game or prototype</p></div>
+    <div class="glass card" data-c="film"><div class="th"></div><h3>Short film</h3><p>Add a film or photo series</p></div>
+  </div>
+</div></section>
+
+<section id="path"><div class="wrap">
+  <h2>My <span class="hl">education</span></h2>
+  <div class="edu" style="margin-top:3rem">
+    <div class="glass"><small>Currently pursuing</small><h3>B.Sc. Animation &amp; Gaming</h3><p>KL University</p></div>
+    <div class="glass"><small>Completed</small><h3>Intermediate (12th)</h3><p>75%</p></div>
+    <div class="glass"><small>Completed</small><h3>SSC (10th)</h3><p>Completed</p></div>
+  </div>
+  <div class="glass quote"><p>My goal is to become a successful filmmaker by combining creativity, technical knowledge and a passion for visual storytelling to create meaningful, engaging films.</p></div>
+</div></section>
+
+<section id="contact"><div class="wrap"><div class="cc">
+  <h2>Let’s make something <span class="hl">epic</span></h2>
+  <p class="sub" style="margin-bottom:0">Reach out for collaborations, internships or to talk film, games and animation.</p>
+  <div class="cta">
+    <a class="btn glow" href="mailto:palaparthi.paulson@gmail.com"><span>Email me</span></a>
+    <a class="btn line" href="tel:+916301281052"><span>Call 6301281052</span></a>
+    <button class="btn line" id="copy" type="button"><span>Copy email</span></button>
+  </div>
+</div></div></section>
+</main>
+<footer>© 2026 Palaparthi Paulson</footer>
+<div id="toast" role="status">Email copied</div>
+
+<script>
+(function(){
+  var cards=document.querySelectorAll(".card"),tabs=document.querySelectorAll(".tab");
+  tabs.forEach(function(t){t.addEventListener("click",function(){
+    tabs.forEach(function(x){x.setAttribute("aria-pressed",x===t?"true":"false")});
+    cards.forEach(function(c){c.hidden=!(t.dataset.f==="all"||c.dataset.c===t.dataset.f)});
+  })});
+  var el=document.getElementById("toast");
+  function say(m){el.textContent=m;el.classList.add("on");setTimeout(function(){el.classList.remove("on")},1900)}
+  document.getElementById("copy").addEventListener("click",function(){
+    try{navigator.clipboard.writeText("palaparthi.paulson@gmail.com").then(function(){say("Email copied")},function(){say("Copy failed. Use palaparthi.paulson@gmail.com")})}
+    catch(e){say("Copy failed. Use palaparthi.paulson@gmail.com")}
+  });
+})();
+</script>
+</body>
+</html>
